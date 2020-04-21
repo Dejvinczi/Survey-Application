@@ -9,7 +9,7 @@ import java.util.List;
 public class Question{
     @Id
     @Column(name = "QUESTION_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int questionId;
     @Column(name = "QUESTION")
     private String question;

@@ -76,3 +76,19 @@ DROP USER_ROLE [42001-200]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "DROP *[*] FROM USER_ROLE"; oczekiwano "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"
 Syntax error in SQL statement "DROP *[*] FROM USER_ROLE"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
 DROP * FROM USER_ROLE [42001-200]
+2020-04-21 15:38:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "DROP ROLES[*] FROM SURVEY"; oczekiwano "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"
+Syntax error in SQL statement "DROP ROLES[*] FROM SURVEY"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+DROP ROLES FROM SURVEY [42001-200]
+2020-04-21 15:38:14 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "DELETE ROLES FROM[*] SURVEY"
+Syntax error in SQL statement "DELETE ROLES FROM[*] SURVEY"; SQL statement:
+DELETE ROLES FROM SURVEY [42000-200]
+2020-04-21 15:38:52 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "DELETE TABLE[*] ROLES"; oczekiwano "identifier"
+Syntax error in SQL statement "DELETE TABLE[*] ROLES"; expected "identifier"; SQL statement:
+DELETE TABLE ROLES [42001-200]
+2020-04-21 15:38:57 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "DELETE TABLE[*] ROLES"; oczekiwano "identifier"
+Syntax error in SQL statement "DELETE TABLE[*] ROLES"; expected "identifier"; SQL statement:
+DELETE TABLE ROLES [42001-200]

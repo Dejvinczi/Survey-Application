@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
+    private int id;
     private String firstName;
     private String lastName;
     private String userName;
@@ -18,6 +19,7 @@ public class MyUserDetails implements UserDetails {
     private List<GrantedAuthority> authorities;
 
     public MyUserDetails(User user) {
+        this.id = user.getUserId();
         this.userName = user.getEmail();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
@@ -44,6 +46,8 @@ public class MyUserDetails implements UserDetails {
     public String getUsername() {
         return userName;
     }
+
+    public int getId(){return id;}
 
     @Override
     public boolean isAccountNonExpired() {

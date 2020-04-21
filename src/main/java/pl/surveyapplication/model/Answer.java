@@ -15,7 +15,7 @@ public class Answer{
      *Zmienna odpowiadajaca za ID odpowiedzi
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ANSWER_ID")
         private int answerId;
     /**

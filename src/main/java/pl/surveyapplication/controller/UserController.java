@@ -8,7 +8,7 @@ import pl.surveyapplication.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/admin/users")
+@RequestMapping(value = "/users")
 public class UserController {
     @Autowired
     private UserService userService;

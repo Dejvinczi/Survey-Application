@@ -8,18 +8,18 @@ import pl.surveyapplication.service.SurveyService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/admin/surveys")
+@RequestMapping(value = "/surveys")
 public class SurveyController {
 
     @Autowired
     private SurveyService surveyService;
 
-    @PostMapping
+    @PostMapping()
     public Survey addSurvey(@RequestBody Survey survey){
         return surveyService.addSurvey(survey);
     }
 
-    @GetMapping
+    @GetMapping()
     public List<Survey> getSurveys(){
         return surveyService.getSurveys();
     }
