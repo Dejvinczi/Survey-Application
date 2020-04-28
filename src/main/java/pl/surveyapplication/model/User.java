@@ -3,7 +3,6 @@ package pl.surveyapplication.model;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -11,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USER_ID")
-    private int userId;
+    private Long userId;
     @Column(name = "FIRST_NAME")
     private String firstName;
     @Column(name = "LAST_NAME")
@@ -28,11 +27,11 @@ public class User {
     public User(){}
 
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -83,8 +82,10 @@ public class User {
     }
 
     public void setRoles(String roles) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("ROLE_" + roles);
-        this.roles = sb.toString();
+        this.roles = roles;
+    }
+
+    public void changePassword(String password) {
+        this.password = password;
     }
 }

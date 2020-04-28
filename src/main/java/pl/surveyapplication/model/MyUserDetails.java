@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String userName;
@@ -25,7 +25,10 @@ public class MyUserDetails implements UserDetails {
         this.lastName = user.getLastName();
         this.password = user.getPassword();
         this.active = user.isActive();
-        this.authorities = Arrays.stream(user.getRoles().split(","))
+        StringBuilder sb = new StringBuilder();
+        sb.append("ROLE_");
+        sb.append(user.getRoles());
+        this.authorities = Arrays.stream(sb.toString().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
@@ -47,7 +50,7 @@ public class MyUserDetails implements UserDetails {
         return userName;
     }
 
-    public int getId(){return id;}
+    public Long getId(){return id;}
 
     @Override
     public boolean isAccountNonExpired() {

@@ -1,40 +1,65 @@
 package pl.surveyapplication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import pl.surveyapplication.model.User;
 import pl.surveyapplication.service.UserService;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController
-@RequestMapping(value = "/users")
+@Controller
+@RequestMapping("/users")
 public class UserController {
     @Autowired
-    private UserService userService;
+    UserService service;
 
-    @PostMapping
-    public User addUser(@RequestBody User user){
-        return userService.addUser(user);
+    @RequestMapping
+    public String getAllUsers(Model model)
+    {
+        List<User> list = service.getAllUsers();
+
+        model.addAttribute("users", list);
+        return "list-users";
     }
 
-    @GetMapping
-    public List<User> getUsers(){
-        return userService.getUsers();
+    @RequestMapping(path = {"/edit", "/edit/{id}"})
+    public String editUserById(Model model, @PathVariable("id") Optional<Long> id)
+    {
+        if (id.isPresent()) {
+            User entity = service.getUserById(id.get());
+            model.addAttribute("user", entity);
+        }
+        return "edit-user";
     }
 
-    @GetMapping(value = "/{userId}")
-    public User getUser(@PathVariable("userId") int userId){
-        return userService.getUser(userId);
+    @RequestMapping(path = {"/add"})
+    public String addUserBy(Model model)
+    {
+            model.addAttribute("user", new User());
+        return "add-user";
     }
 
-    @PutMapping(value = "/{userId}")
-    public User updateUser(@PathVariable("userId") int userId, @RequestBody User user) {
-        return userService.updateUser(userId, user);
+    @RequestMapping(path = "/delete/{id}")
+    public String deleteUserById(Model model, @PathVariable("id") Long id)
+    {
+        service.deleteUserById(id);
+        return "redirect:/users";
     }
 
-    @DeleteMapping(value = "{userId}")
-    public void deleteUser(@PathVariable("userId") int userId){
-        userService.deleteUser(userId);
+    @RequestMapping(path = "/createUser", method = RequestMethod.POST)
+    public String createOrUpdateUser(User user)
+    {
+        if(user.getRoles() == null) user.setRoles("USER");
+        user.setActive(true);
+        service.createOrUpdateUser(user);
+        return "redirect:/users";
     }
+
 }
