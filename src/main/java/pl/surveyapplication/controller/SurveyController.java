@@ -8,6 +8,7 @@ import pl.surveyapplication.model.Survey;
 import pl.surveyapplication.service.SurveyService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/surveys")
@@ -15,11 +16,6 @@ public class SurveyController {
 
     @Autowired
     private SurveyService surveyService;
-
-    @PostMapping()
-    public Survey addSurvey(@RequestBody Survey survey){
-        return surveyService.addSurvey(survey);
-    }
 
     @RequestMapping
     public String getAllSurveys(Model model)
@@ -30,21 +26,25 @@ public class SurveyController {
         return "list-surveys";
     }
 
-    @GetMapping (value = "/{surveyId}")
-    public Survey getSurvey(@PathVariable("surveyId") int surveyId){
-        return surveyService.getSurvey(surveyId);
+    @RequestMapping(path = {"/add"})
+    public String addSurveyBy(Model model){
+        model.addAttribute("survey",new Survey());
+        return "add-survey";
     }
 
-    @PutMapping(value = "/{surveyId}")
-    public Survey updateSurvey(@PathVariable("surveyId") int surveyId, @RequestBody Survey survey){
-        return surveyService.updateSurvey(surveyId, survey);
+    @RequestMapping (path = {"/show", "/show/{id}"})
+    public String getSurveyById(Model model, @PathVariable("id") Optional<Long> id){
+        if (id.isPresent()){
+            Survey entity = surveyService.getSurvey(id.get());
+            model.addAttribute("survey", entity);
+        }
+        return "show-survey";
     }
 
-    @DeleteMapping(value = "/{surveyId}")
-    public void deleteSurvey(@PathVariable("surveyId") int surveyId){
-        surveyService.deleteSurvey(surveyId);
+    @RequestMapping(path = "/createSurvey", method = RequestMethod.POST)
+    public String createOrUpdateUser(Survey survey)
+    {
+        surveyService.addSurvey(survey);
+        return "redirect:/surveys";
     }
-
-
-
 }

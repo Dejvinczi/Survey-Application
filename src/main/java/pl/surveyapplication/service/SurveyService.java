@@ -22,14 +22,14 @@ public class SurveyService {
         return surveyRepository.findAll();
     }
 
-    public Survey getSurvey(int surveyId){
+    public Survey getSurvey(Long surveyId){
         Optional<Survey> optionalSurvey = surveyRepository.findById(surveyId);
         if(!optionalSurvey.isPresent())
             throw new SurveyNotFoundException("Survey of this ID is not available...");
         return optionalSurvey.get();
     }
 
-    public Survey updateSurvey(int surveyId, Survey survey){
+    public Survey updateSurvey(Long surveyId, Survey survey){
         Optional<Survey> optionalSurvey = surveyRepository.findById(surveyId);
         if(!optionalSurvey.isPresent())
             throw new SurveyNotFoundException("Survey of this ID is not available...");
@@ -37,7 +37,7 @@ public class SurveyService {
         return surveyRepository.save(survey);
     }
 
-    public void deleteSurvey(int surveyId){
+    public void deleteSurvey(Long surveyId){
         Optional<Survey> optionalSurvey = surveyRepository.findById(surveyId);
         if(!optionalSurvey.isPresent())
             throw new SurveyNotFoundException("Survey of this ID is not available...");

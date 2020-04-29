@@ -10,7 +10,7 @@ public class Survey{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "SURVEY_ID")
-    private int surveyId;
+    private Long surveyId;
     @Column(name = "SURVEY_NAME")
     private String surveyName;
     @OneToMany(cascade = CascadeType.ALL)
@@ -20,11 +20,11 @@ public class Survey{
 
     public Survey(){}
 
-    public int getSurveyId() {
+    public Long getSurveyId() {
         return surveyId;
     }
 
-    public void setSurveyId(int surveyId) {
+    public void setSurveyId(Long surveyId) {
         this.surveyId = surveyId;
     }
 

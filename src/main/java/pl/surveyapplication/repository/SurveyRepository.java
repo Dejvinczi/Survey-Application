@@ -7,7 +7,7 @@ import pl.surveyapplication.model.Survey;
 import java.util.List;
 
 @Repository
-public interface SurveyRepository extends CrudRepository<Survey,Integer> {
+public interface SurveyRepository extends CrudRepository<Survey,Long> {
     @Override
     List<Survey> findAll();
 }

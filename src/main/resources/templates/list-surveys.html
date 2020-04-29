@@ -16,8 +16,8 @@
         <div class="card-body">
             <div th:switch="${surveys}" class="container my-5">
                 <p class="my-5">
-                    <a href="users/add" class="btn btn-primary">
-                        <i class="fas fa-user-plus ml-2"> Add Survey </i></a>
+                    <a href="surveys/add" class="btn btn-primary">
+                        <i class="fas fa-poll-h ml-2"> Add Survey </i></a>
                 </p>
                 <div class="col-md-10">
                     <h2 th:case="null">No record found !!</h2>
@@ -25,29 +25,21 @@
                         <table class="table table-striped table-responsive-md">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Questions</th>
+                                <th>Survey name</th>
+                                <th>Number of questions</th>
+                                <th>View</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="survey : ${surveys}">
                                 <td th:text="${survey.getSurveyName()}"></td>
-                                <td th:each="question : ${survey.getQuestions()}"><a th:each="sur" th:text="${question.getQuestion()}"></a></td>
-
-<!--                                </td>-->
-
-<!--                                <td>-->
-<!--                                    <a th:href="@{/surveys/edit/{id}(id=${survey.surveyId})}"-->
-<!--                                       class="btn btn-primary">-->
-<!--                                        <i class="fas fa-user-edit ml-2"></i>-->
-<!--                                    </a>-->
-<!--                                </td>-->
-<!--                                <td>-->
-<!--                                    <a th:href="@{/surveys/delete/{id}(id=${survey.surveyId})}"-->
-<!--                                       class="btn btn-primary">-->
-<!--                                        <i class="fas fa-user-times ml-2"></i>-->
-<!--                                    </a>-->
-<!--                                </td>-->
+                                <td th:text="${survey.getQuestions().size()}"></td>
+                                <td>
+                                    <a th:href="@{/surveys/show/{id}(id=${survey.surveyId})}"
+                                       class="btn btn-primary">
+                                        <i class="far fa-eye ml-1"></i>
+                                    </a>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
