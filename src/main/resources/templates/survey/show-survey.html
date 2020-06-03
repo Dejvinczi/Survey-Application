@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<div class="container my-5">
+    <h1 align="center" th:object="${survey}" th:text="*{getSurveyName()}"></h1>
+    <div  class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form action="#" th:object="${survey}" method="post">
+                    <center>
+                    <div th:each="question : ${survey.getQuestions()}">
+                        <div th:text="${question.getQuestion()}"  class="bg-dark text-white"></div>
+
+                        <div th:with="cp = 1" th:each="answer : ${question.getAnswers()}">
+                            <div th:text="'-'+${answer.getAnswer()}" class="bg-secondary text-black"></div>
+                        </div>
+
+                    </div>
+                    </center>
+                </form>
+                <div class="col-md-6">
+                    <p class="my-5">
+                        <a href="/admin/surveys" class="btn btn-primary">
+                            <i class="fas fa-arrow-circle-left"> Back </i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

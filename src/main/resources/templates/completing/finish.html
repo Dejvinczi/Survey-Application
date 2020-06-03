@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Finish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<div class="container my-2">
+    <h3>Your secret key(SAVE IT): </h3>
+    <h1 th:text="${token}"></h1>
+    <center>
+        <form action="#" th:action="@{/user/userPanel}" method="post">
+            <div class="col-md-6">
+                <input type="submit"  class="btn btn-primary" value="  Close  ">
+            </div>
+        </form>
+    </center>
+</div>
+</body>
+
+</html>

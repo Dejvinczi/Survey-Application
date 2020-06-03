@@ -9,39 +9,45 @@ import pl.surveyapplication.repository.SurveyRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Dawid
+ * @version 1.0
+ * Klasa serwisów ankiet.
+ * */
 @Component
 public class SurveyService {
+    /**
+     * Zmienna przechowuje repozytorium ankiet
+     * */
     @Autowired
     private SurveyRepository surveyRepository;
 
+    /**
+     * Metoda dodaje ankiete do bazy danych.
+     * @param survey połączenie.
+     * @return zwraca obiekt ankiety
+     * */
     public Survey addSurvey(Survey survey){
         return surveyRepository.save(survey);
     }
 
+    /**
+     * Metoda pobiera wszystkie ankiety z bazy danych.
+     * @return zwraca liste obiektów ankiet
+     * */
     public List<Survey> getSurveys(){
         return surveyRepository.findAll();
     }
 
-    public Survey getSurvey(int surveyId){
+    /**
+     * Metoda pobiera ankiete o podanym ID z bazy danych.
+     * @param surveyId ID ankiety.
+     * @return zwraca obiekt ankiety
+     * */
+    public Survey getSurvey(Long surveyId){
         Optional<Survey> optionalSurvey = surveyRepository.findById(surveyId);
         if(!optionalSurvey.isPresent())
             throw new SurveyNotFoundException("Survey of this ID is not available...");
         return optionalSurvey.get();
     }
-
-    public Survey updateSurvey(int surveyId, Survey survey){
-        Optional<Survey> optionalSurvey = surveyRepository.findById(surveyId);
-        if(!optionalSurvey.isPresent())
-            throw new SurveyNotFoundException("Survey of this ID is not available...");
-        survey.setSurveyId(surveyId);
-        return surveyRepository.save(survey);
-    }
-
-    public void deleteSurvey(int surveyId){
-        Optional<Survey> optionalSurvey = surveyRepository.findById(surveyId);
-        if(!optionalSurvey.isPresent())
-            throw new SurveyNotFoundException("Survey of this ID is not available...");
-        surveyRepository.deleteById(surveyId);
-    }
-
 }
