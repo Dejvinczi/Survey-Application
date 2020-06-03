@@ -10,16 +10,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Dawid
+ * @version 1.0
+ * Klasa serwisów użytkownika.
+ * */
 @Component
 public class UserService {
+    /**
+     * Zmienna przechowuje repozytorium użytkownika
+     * */
     @Autowired
-    UserRepository repository;
+    UserRepository userRepository;
+    /**
+     * Zmienna przechowuje repozytorium informacji o użytkowniku
+     * */
     @Autowired
     MyUserDetailsService userDetails;
 
+    /**
+     * Metoda zwraca liste uzytkowników z naszej bazie danych.
+     * @return liste obiektów klasy User
+     * */
     public List<User> getAllUsers()
     {
-        List<User> result = (List<User>) repository.findAll();
+        List<User> result = (List<User>) userRepository.findAll();
 
         if(result.size() > 0) {
             return result;
@@ -28,9 +43,14 @@ public class UserService {
         }
     }
 
+    /**
+     * Metoda zwraca użytkownika z naszej bazy danych o konkretnym ID.
+     * @param id id konkretnego użytkownika.
+     * @return obiekt klasy User
+     * */
     public User getUserById(Long id)
     {
-        Optional<User> user = repository.findById(id);
+        Optional<User> user = userRepository.findById(id);
 
         if(user.isPresent())
             return user.get();
@@ -38,17 +58,22 @@ public class UserService {
             throw new UserNotFoundException("User of this ID is not available...");
     }
 
+    /**
+     * Metoda dodaj lub uaktualnia użytkownika w naszej bazie danych.
+     * @param entity nowy użytkownik lub użytkownik który już istnieje i którego będziemy uaktualniać.
+     * @return obiekt klasy User
+     * */
     public User createOrUpdateUser(User entity)
     {
         if(entity.getUserId() == null)
         {
-            entity = repository.save(entity);
+            entity = userRepository.save(entity);
 
             return entity;
         }
         else
         {
-            Optional<User> user = repository.findById(entity.getUserId());
+            Optional<User> user = userRepository.findById(entity.getUserId());
 
             if(user.isPresent())
             {
@@ -60,23 +85,36 @@ public class UserService {
                 newEntity.changePassword(entity.getPassword());
                 newEntity.setRoles(entity.getRoles());
                 newEntity.setActive(entity.isActive());
-                newEntity = repository.save(newEntity);
+                newEntity = userRepository.save(newEntity);
 
                 return newEntity;
             } else {
-                entity = repository.save(entity);
+                entity = userRepository.save(entity);
                 return entity;
             }
         }
     }
 
+    /**
+     * Metoda usuwaużytkownika z naszej bazie danych o podanym ID.
+     * @param id ID użytkownika
+     * */
     public void deleteUserById(Long id)
     {
-        Optional<User> employee = repository.findById(id);
+        Optional<User> employee = userRepository.findById(id);
 
         if(employee.isPresent())
-            repository.deleteById(id);
+            userRepository.deleteById(id);
         else
             throw new UserNotFoundException("User of this ID is not available...");
+    }
+
+    /**
+     * Metoda wyszukuje i zwraca użytkownika z naszej bazie danych o podanym emailu.
+     * @param email email użytkownika
+     * @return liste Optional z obiektami klasy User
+     * */
+    public Optional<User> findByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 }

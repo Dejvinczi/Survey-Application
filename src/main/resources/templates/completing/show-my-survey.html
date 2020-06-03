@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Get survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<center>
+
+    <form action="#" th:action="@{/user/surveys/survey}"method="post">
+        <div class="form-group col-md-8">
+            <label for="firstName" class="col-form-label">Token</label>
+            <input type="text" th:field="*{hash}" class="form-control"
+                   id="firstName" placeholder="token" />
+        </div>
+        <!--        WYSLIJ-->
+        <div>
+            <div class="col-md-6">
+                <input type="submit" style="align-content: center"  class="btn btn-primary" value="  Send  ">
+            </div>
+        </div>
+    </form>
+
+</center>
+</body>
+</html>

@@ -5,8 +5,12 @@ import org.springframework.stereotype.Component;
 import javax.servlet.*;
 import java.io.IOException;
 
+/**
+ * @author Dawid
+ * @version 1.0
+ * Klasa implementująca i zarządzająca naszymi filtrami
+ * */
 @Component
-
 public class MyFilter implements Filter{
 
     @Override

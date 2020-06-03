@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<div class="container my-5">
+    <h3> Add Survey</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form action="#" th:action="@{/admin/surveys}" method="post">
+                    <div class="col-md-6">
+                        <input type="submit"  class="btn btn-primary" value="  Back  ">
+                    </div>
+                </form>
+                <form action="#" th:action="@{/admin/surveys/createSurvey}" th:object="${survey}" method="post">
+                    <div>
+                        <label>Survey name:</label> &nbsp
+                        <input style="position: relative; left: 0%" type="text" name="question" th:field="*{surveyName}" size="70">
+
+                    </div>
+
+                    <br>
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+                    <div class="container1">
+                        <div style="position: relative; left: 0%"><label>Question 1: &nbsp</label><input type="text" name="mytext[]"></div>
+                        <div class="container2">
+                            <div style="position: relative; left: 20%"><label>Answer 1: &nbsp</label><input type="text" name="mytext[]"></div>
+                        </div>
+                        <button class="add_answer_field" style="position: relative; left: 20%">Add Answer &nbsp;
+                            <span style="font-size:16px; font-weight:bold;">+ </span>
+                        </button>
+                    </div>
+
+                    <button class="add_question_field" style="position: relative; left: 0%">Add Question &nbsp;
+                        <span style="font-size:16px; font-weight:bold;">+ </span>
+                    </button>
+
+                    <script>
+                    $(document).ready(function() {
+                    var max_fields = 20;
+                    var wrapper = $(".container1");
+                    var add_button = $(".add_question_field");
+
+                    var x = 1;
+                    $(add_button).click(function(e) {
+                    e.preventDefault();
+                    if (x < max_fields) {
+                    x++;
+                    $(wrapper).append('<div style="position: relative; left: 0%"><label>Question '+x+': &nbsp</label><input type="text" name="mytext[]"/><a href="#" class="delete">Delete</a></div>                            <button class="add_answer_field" style="position: relative; left: 20%">Add Answer &nbsp;\n' + '<span style="font-size:16px; font-weight:bold;">+ </span>\n' + '</button>'); //add input box
+                    } else {
+                    alert('Ankieta może posiadać maksymalnie 20 pytań')
+                    }
+                    });
+
+                    $(wrapper).on("click", ".delete", function(e) {
+                    e.preventDefault();
+                    $(this).parent('div').remove();
+                    x--;
+                    })
+                    });
+
+
+                    $(document).ready(function() {
+                        var max_fields = 5;
+                        var wrapper = $(".container2");
+                        var add_button = $(".add_answer_field");
+
+                        var x = 1;
+                        $(add_button).click(function(e) {
+                            e.preventDefault();
+                            if (x < max_fields) {
+                                x++;
+                                $(wrapper).append('<div style="position: relative; left: 20%"><label>Answer '+x+': &nbsp</label><input type="text" name="mytext[]"/><a href="#" class="delete">Delete</a></div>'); //add input box
+                            } else {
+                                alert('Pytanie może zawierać maksymalnie 5 odpowiedzi')
+                            }
+                        });
+
+                        $(wrapper).on("click", ".delete", function(e) {
+                            e.preventDefault();
+                            $(this).parent('div').remove();
+                            x--;
+                        })
+                    });
+                    </script>
+
+                    <br>
+                    <center>
+                        <div><input type="submit" value="Add this Survey" padd></div>
+                    </center>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

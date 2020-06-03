@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<center>
+        <h1 th:text="${survey.surveyName}"></h1>
+        <div th:each="question: ${survey.getFilledQuestions()}">
+            <p th:text="${question.getQuestion()}"></p>
+            <p th:each="answer: ${question.getFilledAnswer()}">
+                <label th:if="${answer.isCheck()}" th:text="${answer.getAnswer()}"></label>
+            </p>
+        </div>
+
+        <!--        WYSLIJ-->
+        <div>
+            <div class="col-md-6">
+                <input type="submit" style="align-content: center"  class="btn btn-primary" value="  Back  ">
+            </div>
+        </div>
+
+</center>
+</body>
+</html>

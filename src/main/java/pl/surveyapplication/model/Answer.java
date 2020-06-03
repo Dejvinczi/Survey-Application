@@ -3,60 +3,61 @@ package pl.surveyapplication.model;
 import javax.persistence.*;
 
 /**
- * Obiekt <code>Answer</code> reprezetuje jedna z odpowiedzi na jakieś pytanie.
- * @author Dawid Gurgul
+ * @author Dawid
  * @version 1.0
- */
-
+ * Klasa przechowująca treści odpowiedzi.
+ * */
 @Entity
 @Table(name = "ANSWERS")
 public class Answer{
     /**
-     *Zmienna odpowiadajaca za ID odpowiedzi
-     */
+     * Zmienna przechowuje id odpowiedzi
+     * */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ANSWER_ID")
-        private int answerId;
+    private int answerId;
+
     /**
-     *Zmienna odpowiadajaca za tekst odpowiedzi
-     */
+     * Zmienna przechowuje treść odpowiedzi
+     * */
     @Column(name = "ANSWER")
-        private String answer;
+    private String answer;
 
     /**
      * Konstruktor bezparametrowy
-     */
-    public Answer(){}
+     * */
+    public Answer() {
+    }
 
     /**
-     * Pobieranie wartosci ID obiektu
-     * @return answerId
-     */
+     * Metoda pobiera ID odpowiedzi.
+     * @return answerId czyli ID odpowiedzi.
+     * */
     public int getAnswerId() {
         return answerId;
     }
 
     /**
-     * Ustawienie ID obiektu
-     * @param answerId - wartosc na ktora bedziemy ustawiac zmienna ID
-     */
+     * Metoda ustawia ID odpowiedzi.
+     * @param answerId ID odpowiedzi.
+     * */
     public void setAnswerId(int answerId) {
         this.answerId = answerId;
     }
 
     /**
-     * Zwrócenie ciągu tekstowego odpowiedzi
-     * @return answer - zwraca odpowiedz
-     */
+     * Metoda pobiera treść odpowiedzi.
+     * @return answer czyli treść odpowiedzi.
+     * */
     public String getAnswer() {
         return answer;
     }
 
     /**
-     * Ustawienie ciągu tekstowego odpowiedzi
-     * @param answer - wartosc na ktora bedziemy ustawiac nasza odpowiedz
-     */
+     * Metoda ustawia treść odpowiedzi.
+     * @param answer Treść odpowiedzi.
+     * */
     public void setAnswer(String answer) {
         this.answer = answer;
     }
