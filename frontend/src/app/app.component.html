@@ -1,0 +1,14 @@
+
+
+<div *ngFor="let question of filledSurvey.filledQuestions; let j = index">
+  <p>{{question.question}}</p>
+  <div *ngFor="let answer of question.filledAnswers; let i = index">
+    <label>{{answer.answer}}
+    <input type="radio" (click)="setTrueOnProperRadio(j, i, question.filledAnswers.length)"
+           name="{{question.question}}">
+    </label>
+  </div>
+  <hr>
+</div>
+<button (click)="comebackToSpring()">Send</button>
+

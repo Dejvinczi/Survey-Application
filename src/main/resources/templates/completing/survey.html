@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<center>
+        <h1 th:text="${survey.getSurveyName()}"></h1>
+        <div th:each="question: ${survey.getFilledQuestions()}">
+            <b><p th:text="${question.getQuestion()}"></p></b>
+            <p th:each="answer: ${question.getFilledAnswers()}">
+                <label style="background-color:green;" th:if="${answer.isCheck()}" th:text="${answer.getAnswer()}"></label>
+            </p>
+            <hr>
+        </div>
+
+        <!--        WYSLIJ-->
+        <div>
+            <div class="col-md-6">
+                <a href="/user/surveys"> BACK </a>
+            </div>
+        </div>
+
+</center>
+</body>
+</html>
