@@ -9,3 +9,5 @@ zostały udzielone, jednak bez wiedzy który uzytkownik oddał dana ankiete.
 Ankieta opiera sie na technologii Spring Boot. W skład wchodzi takze Spring Security do zabezpieczenia
 aplikacji. Thymeleaf to technologia do parsowania htmla i dostarczania informacji do naszej
 aplikacji. Uzyta technologia bazodanowa to SQL a sama baza danych to H2.
+
+Dokumentacja techniczna: https://dejvinczi.github.io/Survey-Application/
